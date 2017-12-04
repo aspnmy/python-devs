@@ -31,11 +31,11 @@ RUN apt update && \
     # Install Python 3.7 from git head.
     wget https://github.com/python/cpython/archive/master.zip  && \
 	unzip master.zip && \
-	cd /tmp/master && \
+	cd /tmp/cpython-master && \
     ./configure && make && make altinstall && \
     cd /tmp/ && \
     # Remove the git clone.
-    rm -r master && rm master.zip\
+    rm -r cpython-master && rm master.zip\
     # Install Python 3.6 from source.
     wget https://www.python.org/ftp/python/$PYTHON_36_VER/Python-$PYTHON_36_VER.tgz && \
     tar xzf Python-$PYTHON_36_VER.tgz && \
