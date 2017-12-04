@@ -36,7 +36,7 @@ RUN apt update && \
     ./configure && make && make altinstall && \
     cd /tmp/ && \
     # Remove the git clone.
-    rm -r cpython-master && rm master.zip\
+    rm -r cpython-master && rm master.zip && \
     # Install Python 3.6 from source.
     wget https://www.python.org/ftp/python/$PYTHON_36_VER/Python-$PYTHON_36_VER.tgz && \
     tar xzf Python-$PYTHON_36_VER.tgz && \
