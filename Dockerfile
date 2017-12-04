@@ -24,18 +24,18 @@ RUN useradd runner --create-home && \
 # Use a new layer here so that these static changes are cached from above layer.
 # Update Xenial and install the build-deps
 RUN apt update && \
-    apt install -y python3-pip && \
+    apt install -y python3-pip wget && \
     # Remove apt's lists to make the image smaller.
     rm -rf /var/lib/apt/lists/*  && \
     cd  /tmp/ && \
-    # Install Python 3.7 from git head.  Clone with depth only one, no need for the
-    # entire repo to install the latest commit version.
-    git clone https://github.com/python/cpython.git --depth 1 && \
-    cd /tmp/cpython && \
+    # Install Python 3.7 from git head.
+    wget https://github.com/python/cpython/archive/master.zip  && \
+	unzip master.zip && \
+	cd /tmp/master && \
     ./configure && make && make altinstall && \
     cd /tmp/ && \
     # Remove the git clone.
-    rm -r cpython && \
+    rm -r master && rm master.zip\
     # Install Python 3.6 from source.
     wget https://www.python.org/ftp/python/$PYTHON_36_VER/Python-$PYTHON_36_VER.tgz && \
     tar xzf Python-$PYTHON_36_VER.tgz && \
