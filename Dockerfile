@@ -24,7 +24,8 @@ RUN useradd runner --create-home && \
 # Use a new layer here so that these static changes are cached from above layer.
 # Update Xenial and install the build-deps
 RUN apt update && \
-    apt install -y python3-pip wget unzip zlib1g-dev && \
+    apt install -y python3-pip wget unzip zlib1g-dev python-dev python3-dev \
+	libreadline-dev libbz2-dev libsqlite3-dev && \
     # Remove apt's lists to make the image smaller.
     rm -rf /var/lib/apt/lists/*  && \
     cd  /tmp/ && \
