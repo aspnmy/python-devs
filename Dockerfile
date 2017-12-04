@@ -59,11 +59,11 @@ RUN apt update && \
     cd /tmp/ && \
     rm Python-$PYTHON_34_VER.tgz && rm -r Python-$PYTHON_34_VER && \
     wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz && \
-     tar zxf Python-2.7.13.tgz && \
-     cd /tmp/Python-2.7.13 && \
+     tar zxf Python-$PYTHON_27_VER.tgz && \
+     cd /tmp/Python-$PYTHON_27_VER && \
      ./configure && make && make altinstall && \
      cd /tmp/ && \
-     rm Python-2.7.13.tgz && rm -r Python-2.7.13 && \
+     rm Python-$PYTHON_27_VER.tgz && rm -r Python-$PYTHON_27_VER && \
      # For the qa test and codecov.
      pip3 install mypy \
                   codecov \
