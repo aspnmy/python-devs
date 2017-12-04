@@ -24,7 +24,7 @@ RUN useradd runner --create-home && \
 # Use a new layer here so that these static changes are cached from above layer.
 # Update Xenial and install the build-deps
 RUN apt update && \
-    apt install python3-pip && \
+    apt install -y python3-pip && \
     # Remove apt's lists to make the image smaller.
     rm -rf /var/lib/apt/lists/*  && \
     cd  /tmp/ && \
@@ -63,9 +63,6 @@ RUN apt update && \
      ./configure && make && make altinstall && \
      cd /tmp/ && \
      rm Python-2.7.13.tgz && rm -r Python-2.7.13 && \
-     # Now remove all the build-dependencies.
-     apt remove --purge build-dep python2.7 && \
-     apt remove --purge build-dep python3.5 && \
      # For the qa test and codecov.
      pip3 install mypy \
                   codecov \
