@@ -6,6 +6,8 @@ MAINTAINER Barry Warsaw <barry@python.org>
 RUN sed -i -- 's/#deb-src/deb-src/g' /etc/apt/sources.list && \
     sed -i -- 's/# deb-src/deb-src/g' /etc/apt/sources.list
 
+ADD get-pythons.sh /usr/local/bin/get-pythons.sh
+
 # Change these variables to update the version of Python installed.
 ENV PYTHON_34_VER=3.4.7 \
     PYTHON_35_VER=3.5.4 \
@@ -28,46 +30,11 @@ RUN apt update && \
     apt install -y python3-pip wget unzip && \
     # Remove apt's lists to make the image smaller.
     rm -rf /var/lib/apt/lists/*  && \
-    cd  /tmp/ && \
-    # Install Python 3.7 from git head.
-    wget https://github.com/python/cpython/archive/master.zip  && \
-	unzip master.zip && \
-	cd /tmp/cpython-master && \
-    ./configure && make && make altinstall && \
-    cd /tmp/ && \
-    # Remove the git clone.
-    rm -r cpython-master && rm master.zip && \
-    # Install Python 3.6 from source.
-    wget https://www.python.org/ftp/python/$PYTHON_36_VER/Python-$PYTHON_36_VER.tgz && \
-    tar xzf Python-$PYTHON_36_VER.tgz && \
-    cd /tmp/Python-$PYTHON_36_VER && \
-    ./configure && make && make altinstall && \
-    cd /tmp && \
-    rm Python-$PYTHON_36_VER.tgz && rm -r Python-$PYTHON_36_VER && \
-    # Install Python 3.5
-    wget https://www.python.org/ftp/python/$PYTHON_35_VER/Python-$PYTHON_35_VER.tgz && \
-    tar xzf Python-$PYTHON_35_VER.tgz && \
-    cd  /tmp/Python-$PYTHON_35_VER && \
-    ./configure && make && make altinstall && \
-    cd /tmp/ && \
-    rm Python-$PYTHON_35_VER.tgz && rm -r Python-$PYTHON_35_VER && \
-    # Install Python 3.4 from source.
-    wget https://www.python.org/ftp/python/$PYTHON_34_VER/Python-$PYTHON_34_VER.tgz && \
-    tar zxf Python-$PYTHON_34_VER.tgz && \
-    cd /tmp/Python-$PYTHON_34_VER && \
-    ./configure && make && make altinstall && \
-    cd /tmp/ && \
-    rm Python-$PYTHON_34_VER.tgz && rm -r Python-$PYTHON_34_VER && \
-    wget https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz && \
-     tar zxf Python-$PYTHON_27_VER.tgz && \
-     cd /tmp/Python-$PYTHON_27_VER && \
-     ./configure && make && make altinstall && \
-     cd /tmp/ && \
-     rm Python-$PYTHON_27_VER.tgz && rm -r Python-$PYTHON_27_VER && \
-     # For the qa test and codecov.
-     pip3 install mypy \
-                  codecov \
-                  tox
+	# get and install all versions of Python.
+	./usr/local/bin/get-pythons.sh && \
+    pip3 install mypy \
+                 codecov \
+                 tox
 
 # Switch to runner user and set the workdir
 USER runner
