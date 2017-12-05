@@ -3,15 +3,15 @@
 set -ex
 
 cleanup_after_install () {
-	find /usr/local -depth -type d -a  -name test -o -name tests -o  -type f -a -name '*.pyc' -o -name '*.pyo' -exec rm -rf '{}' +
-	rm -rf /usr/src/python
+    find /usr/local -depth -type d -a  -name test -o -name tests -o  -type f -a -name '*.pyc' -o -name '*.pyo' -exec rm -rf '{}' +
+    rm -rf /usr/src/python
 }
 
 
 get_install () {
-	PY_VERSION=$1
-	cd /tmp
-	wget https://www.python.org/ftp/python/$PY_VERSION/Python-$PY_VERSION.tgz
+    PY_VERSION=$1
+    cd /tmp
+    wget https://www.python.org/ftp/python/$PY_VERSION/Python-$PY_VERSION.tgz
     tar xzf Python-$PY_VERSION.tgz
     cd /tmp/Python-$PY_VERSION
     ./configure && make && make altinstall
