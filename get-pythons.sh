@@ -20,20 +20,20 @@ get_install () {
 }
 
 
-# # First, get and install Python 3.7 from the latest git install.
-# cd  /tmp/
-# wget https://github.com/python/cpython/archive/master.zip
-# unzip master.zip
-# cd /tmp/cpython-master
-# ./configure && make && make altinstall
-# # Remove the git clone.
-# rm -r /tmp/cpython-master && rm /tmp/master.zip
+# First, get and install Python 3.7 from the latest git install.
+cd  /tmp/
+wget https://github.com/python/cpython/archive/master.zip
+unzip master.zip
+cd /tmp/cpython-master
+./configure && make && make altinstall
+# Remove the git clone.
+rm -r /tmp/cpython-master && rm /tmp/master.zip
 
-# # Install Python 3.4, 3.5, 3.6, 2.7
-# get_install $PYTHON_27_VER
-# get_install $PYTHON_34_VER
-# get_install $PYTHON_35_VER
-# get_install $PYTHON_36_VER
+# Install Python 3.4, 3.5, 3.6, 2.7
+get_install $PYTHON_27_VER
+get_install $PYTHON_34_VER
+get_install $PYTHON_35_VER
+get_install $PYTHON_36_VER
 
 # After we have installed all the things, we cleanup tests and unused files
 # like .pyc and .pyo
