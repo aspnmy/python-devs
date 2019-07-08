@@ -27,13 +27,13 @@ You can use this image to test something in the latest version of Python,
 e.g.:
 
 ```
-$ docker run quay.io/python-devs/ci-image python3.8 -c "import sys; print(sys.version)"
+$ docker run quay.io/python-devs/ci-image:master python3.8 -c "import sys; print(sys.version)"
 ```
 
 You can pull the resulting containers with this command:
 
 ```
-$ docker pull quay.io/python-devs/ci-image
+$ docker pull quay.io/python-devs/ci-image:master
 ```
 
 If you want to use this image in your own CI pipelines (e.g. a
