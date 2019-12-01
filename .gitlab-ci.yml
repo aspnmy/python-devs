@@ -7,12 +7,22 @@ stages:
 
 variables:
   RELEASE_IMAGE: quay.io/python-devs/ci-image:master
-
-before_script:
-  - docker login -u  python-devs+gitlabci -p $CI_JOB_TOKEN quay.io
+  LATEST_IAMGE: quay.io/python-devs/ci-image:latest
 
 build:
   stage: build
   script:
+    - docker login -u  python-devs+gitlabci -p $CI_JOB_TOKEN quay.io
     - docker build --pull -t $RELEASE_IMAGE .
     - docker push $RELEASE_IMAGE
+    - docker tag $RELEASE_IMAGE $LATEST_IMAGE
+    - docker push $LATEST_IMAGE
+  only:
+    - master@python-devs/ci-images
+
+build-fork:
+  stage: build
+  script:
+    - docker build --pull -t $RELEASE_IMAGE .
+  except:
+    - master@python-devs/ci-images
