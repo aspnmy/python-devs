@@ -1,0 +1,18 @@
+image: docker:latest
+services:
+- docker:dind
+
+stages:
+- build
+
+variables:
+  RELEASE_IMAGE: quay.io/python-devs/ci-image:master
+
+before_script:
+  - docker login -u  python-devs+gitlabci -p $CI_JOB_TOKEN quay.io
+
+build:
+  stage: build
+  script:
+    - docker build --pull -t $RELEASE_IMAGE .
+    - docker push $RELEASE_IMAGE
