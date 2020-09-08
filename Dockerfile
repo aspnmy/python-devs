@@ -16,9 +16,9 @@ ADD get-pythons.sh /usr/local/bin/get-pythons.sh
 
 # This should be Major.Minor.Patch[a|b|rcN] i.e. the exact version you want to
 # build, including pre-release markers.
-ENV PYTHON_27_VER=2.7.17 \
+ENV PYTHON_27_VER=2.7.18 \
     PYTHON_34_VER=3.4.10 \
-    PYTHON_35_VER=3.5.7 \
+    PYTHON_35_VER=3.5.10 \
     PYTHON_36_VER=3.6.12 \
     PYTHON_37_VER=3.7.9 \
     PYTHON_38_VER=3.8.5 \

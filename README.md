@@ -12,9 +12,9 @@ The versions of Python currently supported include:
 * [Python 3.8.5](https://www.python.org/downloads/release/python-385/)
 * [Python 3.7.9](https://www.python.org/downloads/release/python-379/)
 * [Python 3.6.12](https://www.python.org/downloads/release/python-3612/)
-* [Python 3.5.7](https://www.python.org/downloads/release/python-357/)
+* [Python 3.5.10](https://www.python.org/downloads/release/python-3510/)
 * [Python 3.4.10](https://www.python.org/downloads/release/python-3410/)
-* [Python 2.7.17](https://www.python.org/downloads/release/python-2717/)
+* [Python 2.7.18](https://www.python.org/downloads/release/python-2718/)
 
 Feel free to help us by submitting [merge
 requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
