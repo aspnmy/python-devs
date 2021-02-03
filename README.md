@@ -8,7 +8,7 @@ releases of Python, as well as a semi-up-to-date checkout of the Python
 The versions of Python currently supported include:
 
 * Python development git head (currently 3.10)
-* [Python 3.10.0a4](https://www.python.org/downloads/release/python-3100a4/)
+* [Python 3.10.0a5](https://www.python.org/downloads/release/python-3100a5/)
 * [Python 3.9.1](https://www.python.org/downloads/release/python-39/)
 * [Python 3.8.7](https://www.python.org/downloads/release/python-387/)
 * [Python 3.7.9](https://www.python.org/downloads/release/python-379/)
