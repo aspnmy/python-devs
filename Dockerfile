@@ -19,8 +19,8 @@ ADD get-pythons.sh /usr/local/bin/get-pythons.sh
 ENV PYTHON_27_VER=2.7.18 \
     PYTHON_34_VER=3.4.10 \
     PYTHON_35_VER=3.5.10 \
-    PYTHON_36_VER=3.6.12 \
-    PYTHON_37_VER=3.7.9 \
+    PYTHON_36_VER=3.6.13 \
+    PYTHON_37_VER=3.7.10 \
     PYTHON_38_VER=3.8.7 \
     PYTHON_39_VER=3.9.1 \
     PYTHON_310_VER=3.10.0a5 \
