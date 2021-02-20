@@ -26,13 +26,16 @@ get_install () {
 # For pre-release versions, include a second argument that's *just*
 # Major.Minor.Patch (i.e. without the pre-release tag) since when they don't
 # match, the second argument is the download directory.
-get_install $PYTHON_27_VER
-get_install $PYTHON_34_VER
-get_install $PYTHON_35_VER
-get_install $PYTHON_36_VER
-get_install $PYTHON_37_VER
-get_install $PYTHON_38_VER
-get_install $PYTHON_39_VER
+# get_install $PYTHON_27_VER
+# get_install $PYTHON_34_VER
+# get_install $PYTHON_35_VER
+# get_install $PYTHON_36_VER
+# get_install $PYTHON_37_VER
+# get_install $PYTHON_38_VER
+# get_install $PYTHON_39_VER
+while read ver; do
+    get_install $ver
+done <version.txt
 get_install $PYTHON_310_VER 3.10.0
 
 # Get and install Python rolling devel from the latest git install.
