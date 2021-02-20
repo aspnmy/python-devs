@@ -38,8 +38,6 @@ def get_latest_version(all_versions):
     return {key: value for key, value in latest.items() if key in SERIES}
 
 def main():
-    # html = get_release_page()
-    # all_versions = get_all_versions(html)
     gh_response = get_tags_from_github()
     all_versions = get_version_from_tags(gh_response)
     latest_versions = get_latest_version(all_versions)
