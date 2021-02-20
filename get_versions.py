@@ -42,7 +42,6 @@ def main():
     # all_versions = get_all_versions(html)
     gh_response = get_tags_from_github()
     all_versions = get_version_from_tags(gh_response)
-    print(all_versions)
     latest_versions = get_latest_version(all_versions)
 
     with open('version.txt', 'w') as fd:
