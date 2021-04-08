@@ -24,7 +24,7 @@ ADD get_versions.py /usr/local/bin/get_versions.py
 #     PYTHON_37_VER=3.7.10 \
 #     PYTHON_38_VER=3.8.8 \
 #     PYTHON_39_VER=3.9.2 \
-#     PYTHON_310_VER=3.10.0a5 \
+#     PYTHON_310_VER=3.10.0a7 \
 # Set Debian front-end to non-interactive so that apt doesn't ask for
 # prompts later.
 ENV  DEBIAN_FRONTEND=noninteractive
