@@ -29,12 +29,12 @@ done <version.txt
 
 # Get and install Python rolling devel from the latest git install.
 cd  /tmp/
-wget -q https://github.com/python/cpython/archive/master.zip
-unzip -qq master.zip
-cd /tmp/cpython-master
+wget -q https://github.com/python/cpython/archive/main.zip
+unzip -qq main.zip
+cd /tmp/cpython-main
 ./configure && make && make altinstall
 # Remove the git clone.
-rm -r /tmp/cpython-master && rm /tmp/master.zip
+rm -r /tmp/cpython-main && rm /tmp/maIN.zip
 
 # After we have installed all the things, we cleanup tests and unused files
 # like .pyc and .pyo
