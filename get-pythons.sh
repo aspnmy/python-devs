@@ -34,7 +34,7 @@ unzip -qq main.zip
 cd /tmp/cpython-main
 ./configure && make && make altinstall
 # Remove the git clone.
-rm -r /tmp/cpython-main && rm /tmp/maIN.zip
+rm -r /tmp/cpython-main && rm /tmp/main.zip
 
 # After we have installed all the things, we cleanup tests and unused files
 # like .pyc and .pyo
