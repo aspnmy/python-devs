@@ -24,7 +24,7 @@ build:
         - docker build --pull -t $CONTAINER_TEST_IMAGE .
         - docker push $CONTAINER_TEST_IMAGE
 
-test1:
+test:
     stage: test
     script:
         - docker pull $CONTAINER_TEST_IMAGE

@@ -2,9 +2,10 @@
 import os
 import json
 import urllib.request
-from packaging import version
+from packaging import version as pkg_version
 
-SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10']
+#SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10']
+SERIES = ['3.9', '3.10']
 
 
 def get_tags_from_github():
@@ -21,9 +22,10 @@ def get_version_from_tags(tags):
     for item in tags:
         if item.get('ref').startswith('refs/tags/v'):
             versions.append(
-                version.parse(item.get('ref').replace('refs/tags/v', ''))
+                pkg_version.parse(item.get('ref').replace('refs/tags/v', ''))
                 )
     return versions
+
 
 def get_latest_version(all_versions):
     # mapping from series to latest.
@@ -36,6 +38,7 @@ def get_latest_version(all_versions):
         else:
             latest[series] = version
     return {key: value for key, value in latest.items() if key in SERIES}
+
 
 def main():
     gh_response = get_tags_from_github()
@@ -52,6 +55,7 @@ def main():
                       file=fd)
             else:
                 print(value, file=fd)
+
 
 if __name__ == "__main__":
     main()
