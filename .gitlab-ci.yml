@@ -28,7 +28,7 @@ test:
     stage: test
     script:
         - docker pull $CONTAINER_TEST_IMAGE
-        - docker run $CONTAINER_TEST_IMAGE test_pythons.py
+        - docker run --env-file=.environment $CONTAINER_TEST_IMAGE test_pythons.py
 
 release-image:
     stage: release
@@ -45,33 +45,3 @@ deploy:
         - ./deploy.sh
     only:
         - main
-
-
-# image: docker:latest
-# services:
-# - docker:dind
-
-# stages:
-# - build
-
-# variables:
-#   RELEASE_IMAGE: quay.io/python-devs/ci-image:master
-#   LATEST_IMAGE: quay.io/python-devs/ci-image:latest
-
-# build:
-#   stage: build
-#   script:
-#     - docker login -u="python-devs+gitlabci" -p="$CI_JOB_TOKEN" quay.io
-#     - docker build --pull -t $RELEASE_IMAGE .
-#     - docker push $RELEASE_IMAGE
-#     - docker tag $RELEASE_IMAGE $LATEST_IMAGE
-#     - docker push $LATEST_IMAGE
-#   only:
-#     - master@python-devs/ci-images
-
-# build-fork:
-#   stage: build
-#   script:
-#     - docker build --pull -t $RELEASE_IMAGE .
-#   except:
-#     - master@python-devs/ci-images

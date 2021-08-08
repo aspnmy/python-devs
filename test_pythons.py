@@ -21,7 +21,7 @@ with open('version.txt', encoding='utf-8') as fp:
     for line in fp.read().splitlines():
         words = line.split()
         if len(words) == 1:
-            version = series = words[1]
+            version = series = words[0]
         else:
             assert len(words) == 2
             version, series = words
@@ -43,8 +43,10 @@ for exe, output in testables.items():
     else:
         SUCCEED.append(exe)
 
+
 if len(FAIL) == 0:
     sys.exit(0)
+
 
 print(f'FAILED: {FAIL}')
 sys.exit(len(FAIL))
