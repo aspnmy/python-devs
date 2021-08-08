@@ -5,7 +5,7 @@ import urllib.request
 from packaging import version as pkg_version
 
 #SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10']
-SERIES = ['3.9', '3.10']
+SERIES = ['3.9']
 
 
 def get_tags_from_github():
