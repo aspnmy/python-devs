@@ -28,13 +28,7 @@ test:
     stage: test
     script:
         - docker pull $CONTAINER_TEST_IMAGE
-        - docker run $CONTAINER_TEST_IMAGE /script/to/run/tests
-
-test2:
-    stage: test
-    script:
-        - docker pull $CONTAINER_TEST_IMAGE
-        - docker run $CONTAINER_TEST_IMAGE /script/to/run/another/test
+        - docker run $CONTAINER_TEST_IMAGE test_pythons.py
 
 release-image:
     stage: release
