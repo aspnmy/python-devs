@@ -9,22 +9,6 @@ RUN sed -i -- 's/#deb-src/deb-src/g' /etc/apt/sources.list && \
 ADD get-pythons.sh /usr/local/bin/get-pythons.sh
 ADD get_versions.py /usr/local/bin/get_versions.py
 
-# Change these variables to update the version of Python installed.
-#
-# @@@@@
-# Update the README.md!
-# @@@@@
-
-# This should be Major.Minor.Patch[a|b|rcN] i.e. the exact version you want to
-# build, including pre-release markers.
-# ENV PYTHON_27_VER=2.7.18 \
-#     PYTHON_34_VER=3.4.10 \
-#     PYTHON_35_VER=3.5.10 \
-#     PYTHON_36_VER=3.6.14 \
-#     PYTHON_37_VER=3.7.11 \
-#     PYTHON_38_VER=3.8.11 \
-#     PYTHON_39_VER=3.9.6 \
-#     PYTHON_310_VER=3.10.0rc1 \
 # Set Debian front-end to non-interactive so that apt doesn't ask for
 # prompts later.
 ENV  DEBIAN_FRONTEND=noninteractive
