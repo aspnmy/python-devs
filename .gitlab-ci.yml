@@ -28,7 +28,7 @@ test:
     stage: test
     script:
         - docker pull $CONTAINER_TEST_IMAGE
-        - docker run --env-file=.environment $CONTAINER_TEST_IMAGE test_pythons.py
+        - docker run $CONTAINER_TEST_IMAGE /usr/local/bin/test_pythons.py
 
 release-image:
     stage: release

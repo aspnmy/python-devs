@@ -8,6 +8,7 @@ RUN sed -i -- 's/#deb-src/deb-src/g' /etc/apt/sources.list && \
 
 ADD get-pythons.sh /usr/local/bin/get-pythons.sh
 ADD get_versions.py /usr/local/bin/get_versions.py
+ADD test_pythons.py /usr/local/bin/test_pythons.py
 
 # Set Debian front-end to non-interactive so that apt doesn't ask for
 # prompts later.
@@ -35,6 +36,7 @@ RUN ./usr/local/bin/get_versions.py && ./usr/local/bin/get-pythons.sh > /dev/nul
     # pip dependency resolution when required package versions conflict is resolved.
     # See: https://github.com/pypa/virtualenv/issues/1551 for context.
 RUN pip3 install mypy codecov tox "six>=1.14.0"
+ADD /versions.txt /usr/local/bin/versions.txt
 
 # Switch to runner user and set the workdir.
 USER runner
