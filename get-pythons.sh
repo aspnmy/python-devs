@@ -24,7 +24,7 @@ get_install () {
 # Install Python 2.7, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10
 while read ver; do
     get_install $ver
-done <version.txt
+done <versions.txt
 
 
 # Get and install Python rolling devel from the latest git install.
