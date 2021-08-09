@@ -26,21 +26,20 @@ Feel free to help us by submitting [merge
 requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
 [issues](https://gitlab.com/python-devs/ci-images/issues).
 
-We are publishing the Docker images on [Quay](https://quay.io). Changes to
-this repository automatically trigger new builds so the Quay images are [always
-up to date](https://quay.io/repository/python-devs/ci-image?tab=info).
+We are publishing the Docker images on
+[GitLab](https://gitlab.com/python-devs/ci-images/container_registry).
 
 You can use this image to test something in the latest version of Python,
 e.g.:
 
 ```
-$ docker run quay.io/python-devs/ci-image:master python3.8 -c "import sys; print(sys.version)"
+$ docker run registry.gitlab.com/python-devs/ci-images:main python3.9 -c "import sys; print(sys.version)"
 ```
 
 You can pull the resulting containers with this command:
 
 ```
-$ docker pull quay.io/python-devs/ci-image:master
+$ docker pull registry.gitlab.com/python-devs/ci-images:main
 ```
 
 If you want to use this image in your own CI pipelines (e.g. a
@@ -48,7 +47,7 @@ If you want to use this image in your own CI pipelines (e.g. a
 shared runner), use this URL to refer to the image:
 
 ```
-quay.io/python-devs/ci-image:master
+registry.gitlab.com/python-devs/ci-images:main
 ```
 
-Here's [an example](https://gitlab.com/python-devs/importlib_resources/blob/master/.gitlab-ci.yml).
+Here's [an example](https://gitlab.com/warsaw/flufl.lock/-/blob/main/.gitlab-ci.yml).
