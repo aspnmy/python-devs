@@ -36,6 +36,7 @@ RUN ./usr/local/bin/get_versions.py && ./usr/local/bin/get-pythons.sh > /dev/nul
     # pip dependency resolution when required package versions conflict is resolved.
     # See: https://github.com/pypa/virtualenv/issues/1551 for context.
 RUN pip3 install mypy codecov tox "six>=1.14.0"
+RUN mv versions.txt /usr/local/bin/versions.txt
 
 # Switch to runner user and set the workdir.
 USER runner

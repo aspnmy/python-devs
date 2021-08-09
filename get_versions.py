@@ -56,7 +56,7 @@ def main():
     all_versions = get_version_from_tags(gh_response)
     latest_versions = get_latest_version(all_versions)
 
-    with open('version.txt', 'w') as fd:
+    with open('versions.txt', 'w') as fd:
         for key, value in latest_versions.items():
             print(f'{key} Series: {value}')
             if value.is_prerelease:

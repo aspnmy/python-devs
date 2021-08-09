@@ -6,8 +6,7 @@ import subprocess
 
 testables = {}
 
-subprocess.run(['/usr/local/bin/get_versions.py'])
-with open('version.txt', encoding='utf-8') as fp:
+with open('/usr/local/bin/versions.txt', encoding='utf-8') as fp:
     # Each line will contain either one entry, in which case that's the exact
     # version and series to use, or two lines where the first word is the
     # exact version and the second word is the series.  This latter is mostly
@@ -35,11 +34,11 @@ SUCCEED = []
 
 for exe, output in testables.items():
     proc = subprocess.run([exe, '-V'], capture_output=True, text=True)
+    # Python 2.7 prints its version string to stderr, Python 3 to stdout.
+    version = proc.stdout.strip() + proc.stderr.strip()
     if proc.returncode != 0:
         FAIL.append(exe)
-    elif len(proc.stderr) > 0:
-        FAIL.append(exe)
-    elif proc.stdout.strip() != output:
+    elif version != output:
         FAIL.append(exe)
     else:
         SUCCEED.append(exe)
