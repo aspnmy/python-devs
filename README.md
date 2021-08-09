@@ -7,6 +7,11 @@ releases of Python, as well as a semi-up-to-date checkout of the Python
 
 The versions of Python currently supported include:
 
+<!---
+It would be great if we could create this list dynamically, since it's the
+we already auto-detect the active versions from the git tags.
+--->
+
 * Python development git head (currently 3.11)
 * [Python 3.10.0rc1](https://www.python.org/downloads/release/python-3100rc1/)
 * [Python 3.9.6](https://www.python.org/downloads/release/python-396/)

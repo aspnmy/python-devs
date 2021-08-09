@@ -1,11 +1,22 @@
 #! /usr/bin/env python3
+
+"""Get the active Python versions from the repo's git tags.
+
+One downside is that we can't get the version of the main branch before the
+first alpha release of the in-development version.  There are no tags until
+the first alpha.
+"""
+
 import os
 import json
 import urllib.request
 from packaging import version as pkg_version
 
-#SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10']
-SERIES = ['3.9']
+# For production.
+SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10']
+
+# For testing.
+#SERIES = ['3.9']
 
 
 def get_tags_from_github():
