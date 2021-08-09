@@ -33,13 +33,13 @@ You can use this image to test something in the latest version of Python,
 e.g.:
 
 ```
-$ docker run registry.gitlab.com/python-devs/ci-images:main python3.9 -c "import sys; print(sys.version)"
+$ docker run registry.gitlab.com/python-devs/ci-images:latest python3.9 -c "import sys; print(sys.version)"
 ```
 
 You can pull the resulting containers with this command:
 
 ```
-$ docker pull registry.gitlab.com/python-devs/ci-images:main
+$ docker pull registry.gitlab.com/python-devs/ci-images:latest
 ```
 
 If you want to use this image in your own CI pipelines (e.g. a
@@ -47,7 +47,7 @@ If you want to use this image in your own CI pipelines (e.g. a
 shared runner), use this URL to refer to the image:
 
 ```
-registry.gitlab.com/python-devs/ci-images:main
+registry.gitlab.com/python-devs/ci-images:latest
 ```
 
 Here's [an example](https://gitlab.com/warsaw/flufl.lock/-/blob/main/.gitlab-ci.yml).
