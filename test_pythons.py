@@ -6,7 +6,8 @@ import subprocess
 
 testables = {}
 
-with open('/usr/local/bin/version.txt', encoding='utf-8') as fp:
+subprocess.run(['/usr/local/bin/get_versions.py'])
+with open('version.txt', encoding='utf-8') as fp:
     # Each line will contain either one entry, in which case that's the exact
     # version and series to use, or two lines where the first word is the
     # exact version and the second word is the series.  This latter is mostly
