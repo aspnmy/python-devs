@@ -1,11 +1,12 @@
 # CI Images for Python
 
-This is an official Docker image containing builds of the latest stable
-releases of Python, as well as a semi-up-to-date checkout of the Python
-[git master branch](https://github.com/python/cpython).  It is based on
-[Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/).
+This is an official Docker image containing builds of various Python release,
+as well as a semi-up-to-date checkout of the Python
+[git master branch](https://github.com/python/cpython).
+It is based on [Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/).
 
-The versions of Python currently supported include:
+There are two images to choose from, `active` and `latest` (a.k.a. `main`).
+Both images contain all the currently active versions of Python, including:
 
 <!---
 It would be great if we could create this list dynamically, since it's the
@@ -18,28 +19,30 @@ we already auto-detect the active versions from the git tags.
 * [Python 3.8.11](https://www.python.org/downloads/release/python-3811/)
 * [Python 3.7.11](https://www.python.org/downloads/release/python-3711/)
 * [Python 3.6.14](https://www.python.org/downloads/release/python-3614/)
+
+The `latest` image also includes these EOL'd versions:
+
 * [Python 3.5.10](https://www.python.org/downloads/release/python-3510/)
-* [Python 3.4.10](https://www.python.org/downloads/release/python-3410/)
 * [Python 2.7.18](https://www.python.org/downloads/release/python-2718/)
 
-Feel free to help us by submitting [merge
-requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
+Feel free to help us by submitting
+[merge requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
 [issues](https://gitlab.com/python-devs/ci-images/issues).
 
-We are publishing the Docker images on
+We are publishing these Docker images on
 [GitLab](https://gitlab.com/python-devs/ci-images/container_registry).
 
-You can use this image to test something in the latest version of Python,
-e.g.:
+You can use these images to test something in a supported version of Python,
+e.g. (substituting `latest` for `active` if you need EOL'd versions):
 
 ```
-$ docker run registry.gitlab.com/python-devs/ci-images:latest python3.9 -c "import sys; print(sys.version)"
+$ docker run registry.gitlab.com/python-devs/ci-images:active python3.9 -c "import sys; print(sys.version)"
 ```
 
 You can pull the resulting containers with this command:
 
 ```
-$ docker pull registry.gitlab.com/python-devs/ci-images:latest
+$ docker pull registry.gitlab.com/python-devs/ci-images:active
 ```
 
 If you want to use this image in your own CI pipelines (e.g. a
@@ -47,7 +50,7 @@ If you want to use this image in your own CI pipelines (e.g. a
 shared runner), use this URL to refer to the image:
 
 ```
-registry.gitlab.com/python-devs/ci-images:latest
+registry.gitlab.com/python-devs/ci-images:active
 ```
 
 Here's [an example](https://gitlab.com/warsaw/flufl.lock/-/blob/main/.gitlab-ci.yml).
