@@ -14,7 +14,7 @@ we already auto-detect the active versions from the git tags.
 --->
 
 * Python development git head (currently 3.11)
-* [Python 3.10.0rc1](https://www.python.org/downloads/release/python-3100rc1/)
+* [Python 3.10.0](https://www.python.org/downloads/release/python-3100/)
 * [Python 3.9.6](https://www.python.org/downloads/release/python-396/)
 * [Python 3.8.11](https://www.python.org/downloads/release/python-3811/)
 * [Python 3.7.11](https://www.python.org/downloads/release/python-3711/)
