@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import pprint
 import subprocess
 
 
@@ -46,5 +47,9 @@ for exe, output in testables.items():
 
 print(f'PASS: {PASS}')
 print(f'FAIL: {FAIL}')
+
+if len(FAIL) > 0:
+    pprint.pprint(testables)
+
 
 sys.exit(len(FAIL))
