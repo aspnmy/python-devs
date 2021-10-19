@@ -32,6 +32,8 @@ with open('/usr/local/bin/versions.txt', encoding='utf-8') as fp:
 
 FAIL = []
 PASS = []
+OUTPUTS = {}
+
 
 for exe, output in testables.items():
     proc = subprocess.run([exe, '-V'], capture_output=True, text=True)
@@ -39,8 +41,10 @@ for exe, output in testables.items():
     version = proc.stdout.strip() + proc.stderr.strip()
     if proc.returncode != 0:
         FAIL.append(exe)
+        OUTPUTS[exe] = version
     elif version != output:
         FAIL.append(exe)
+        OUTPUTS[exe] = version
     else:
         PASS.append(exe)
 
@@ -50,6 +54,7 @@ print(f'FAIL: {FAIL}')
 
 if len(FAIL) > 0:
     pprint.pprint(testables)
+    pprint.pprint(OUTPUTS)
 
 
 sys.exit(len(FAIL))
