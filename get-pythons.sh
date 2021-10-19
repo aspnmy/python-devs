@@ -21,20 +21,23 @@ get_install () {
 }
 
 
-# Install Python 2.7, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10
+# Install tagged Python releases.
 while read ver; do
     get_install $ver
 done <versions.txt
 
 
+# Don't install from git head because of
+# https://gitlab.com/python-devs/ci-images/-/issues/16
+
 # Get and install Python rolling devel from the latest git install.
-cd  /tmp/
-wget -q https://github.com/python/cpython/archive/main.zip
-unzip -qq main.zip
-cd /tmp/cpython-main
-./configure && make && make altinstall
+#cd  /tmp/
+#wget -q https://github.com/python/cpython/archive/main.zip
+#unzip -qq main.zip
+#cd /tmp/cpython-main
+#./configure && make && make altinstall
 # Remove the git clone.
-rm -r /tmp/cpython-main && rm /tmp/main.zip
+#rm -r /tmp/cpython-main && rm /tmp/main.zip
 
 # After we have installed all the things, we cleanup tests and unused files
 # like .pyc and .pyo

@@ -1,9 +1,7 @@
 # CI Images for Python
 
-This is an official Docker image containing builds of various Python release,
-as well as a semi-up-to-date checkout of the Python
-[git master branch](https://github.com/python/cpython).
-It is based on [Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/).
+This is an official Docker image containing various stable and in-development
+Python releases.  It is based on [Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/).
 
 There are two images to choose from, `active` and `latest` (a.k.a. `main`).
 Both images contain all the currently active versions of Python, including:
@@ -13,12 +11,12 @@ It would be great if we could create this list dynamically, since it's the
 we already auto-detect the active versions from the git tags.
 --->
 
-* Python development git head (currently 3.11)
+* [Python 3.11.0a1](https://www.python.org/downloads/release/python-311a0/)
 * [Python 3.10.0](https://www.python.org/downloads/release/python-3100/)
-* [Python 3.9.6](https://www.python.org/downloads/release/python-396/)
-* [Python 3.8.11](https://www.python.org/downloads/release/python-3811/)
-* [Python 3.7.11](https://www.python.org/downloads/release/python-3711/)
-* [Python 3.6.14](https://www.python.org/downloads/release/python-3614/)
+* [Python 3.9.7](https://www.python.org/downloads/release/python-397/)
+* [Python 3.8.12](https://www.python.org/downloads/release/python-3812/)
+* [Python 3.7.12](https://www.python.org/downloads/release/python-3712/)
+* [Python 3.6.15](https://www.python.org/downloads/release/python-3615/)
 
 The `latest` image also includes these EOL'd versions:
 
