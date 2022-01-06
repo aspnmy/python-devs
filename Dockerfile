@@ -26,7 +26,8 @@ RUN apt -qq -o=Dpkg::Use-Pty=0 update && \
     apt -qq -o=Dpkg::Use-Pty=0 -y dist-upgrade && \
     # Use python3.8 build-deps for Ubuntu 20.04
     apt -qq -o=Dpkg::Use-Pty=0 build-dep -y python3.8 && \
-    apt -qq -o=Dpkg::Use-Pty=0 install -y python3-pip wget unzip git && \
+    apt -qq -o=Dpkg::Use-Pty=0 install -y python3-pip python3-venv && \
+    apt -qq -o=Dpkg::Use-Pty=0 install -y wget unzip git && \
     # Remove apt's lists to make the image smaller.
     rm -rf /var/lib/apt/lists/*
 # Get and install all versions of Python.
