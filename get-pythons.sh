@@ -15,7 +15,7 @@ get_install () {
     wget -q https://www.python.org/ftp/python/$PY_DIR/Python-$PY_VERSION.tgz
     tar xzf Python-$PY_VERSION.tgz
     cd /tmp/Python-$PY_VERSION
-    ./configure && make && make altinstall
+    ./configure -C && make && make -j4 altinstall
     cd /tmp
     rm Python-$PY_VERSION.tgz && rm -r Python-$PY_VERSION
 }
@@ -27,17 +27,14 @@ while read ver; do
 done <versions.txt
 
 
-# Don't install from git head because of
-# https://gitlab.com/python-devs/ci-images/-/issues/16
-
 # Get and install Python rolling devel from the latest git install.
-#cd  /tmp/
-#wget -q https://github.com/python/cpython/archive/main.zip
-#unzip -qq main.zip
-#cd /tmp/cpython-main
-#./configure && make && make altinstall
+cd  /tmp/
+wget -q https://github.com/python/cpython/archive/main.zip
+unzip -qq main.zip
+cd /tmp/cpython-main
+./configure -C && make && make -j4 altinstall
 # Remove the git clone.
-#rm -r /tmp/cpython-main && rm /tmp/main.zip
+rm -r /tmp/cpython-main && rm /tmp/main.zip
 
 # After we have installed all the things, we cleanup tests and unused files
 # like .pyc and .pyo

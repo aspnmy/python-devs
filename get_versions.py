@@ -7,7 +7,6 @@ first alpha release of the in-development version.  There are no tags until
 the first alpha.
 """
 
-import os
 import json
 import urllib.request
 from packaging import version as pkg_version
