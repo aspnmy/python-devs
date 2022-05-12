@@ -32,11 +32,7 @@ RUN apt -qq -o=Dpkg::Use-Pty=0 update && \
     rm -rf /var/lib/apt/lists/*
 # Get and install all versions of Python.
 RUN ./usr/local/bin/get_versions.py && ./usr/local/bin/get-pythons.sh > /dev/null
-    # Install some other useful tools for test environments.
-    # Require a newer version of six until an issue with
-    # pip dependency resolution when required package versions conflict is resolved.
-    # See: https://github.com/pypa/virtualenv/issues/1551 for context.
-RUN pip3 install mypy codecov tox pipx "six>=1.14.0"
+RUN python3.10 -m pip install mypy codecov tox pipx
 RUN mv versions.txt /usr/local/bin/versions.txt
 
 # Switch to runner user and set the workdir.
