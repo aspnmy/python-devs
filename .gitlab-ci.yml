@@ -28,6 +28,9 @@ test:
     script:
         - docker pull $CONTAINER_TEST_IMAGE
         - docker run $CONTAINER_TEST_IMAGE /usr/local/bin/test_pythons.py
+        - docker run $CONTAINER_TEST_IMAGE tox --version
+        - docker run $CONTAINER_TEST_IMAGE mypy --version
+        - docker run $CONTAINER_TEST_IMAGE pipx --version
 
 release-image:
     stage: release
