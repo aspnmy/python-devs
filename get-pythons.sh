@@ -15,7 +15,7 @@ get_install () {
     wget -q https://www.python.org/ftp/python/$PY_DIR/Python-$PY_VERSION.tgz
     tar xzf Python-$PY_VERSION.tgz
     cd /tmp/Python-$PY_VERSION
-    ./configure -C && make && make -j4 altinstall
+    ./configure -C && make -j4 && make -j4 altinstall
     cd /tmp
     rm Python-$PY_VERSION.tgz && rm -r Python-$PY_VERSION
 }
@@ -32,7 +32,7 @@ cd  /tmp/
 wget -q https://github.com/python/cpython/archive/main.zip
 unzip -qq main.zip
 cd /tmp/cpython-main
-./configure -C && make && make -j4 altinstall
+./configure -C && make -j4 && make -j4 altinstall
 # Remove the git clone.
 rm -r /tmp/cpython-main && rm /tmp/main.zip
 
