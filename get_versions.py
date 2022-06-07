@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 
 """Get the active Python versions from the repo's git tags.
 
@@ -7,15 +7,31 @@ first alpha release of the in-development version.  There are no tags until
 the first alpha.
 """
 
+import sys
 import json
 import urllib.request
+
+from datetime import date
+from enum import Enum, auto
 from packaging import version as pkg_version
+from subprocess import run
 
 # For production.
 SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10', '3.11']
 
 # For testing.
 #SERIES = ['3.9']
+
+
+class Auto(Enum):
+    def _generate_next_value_(name, start, count, last_values):
+        return name
+
+
+class Branches(Auto):
+    latest = auto()
+    main = auto()
+    active = auto()
 
 
 def get_tags_from_github():
@@ -50,13 +66,54 @@ def get_latest_version(all_versions):
     return {key: value for key, value in latest.items() if key in SERIES}
 
 
+def get_version_eols():
+    with urllib.request.urlopen(
+        'https://endoflife.date/api/python.json'
+    ) as response:
+        val = response.read()
+    res = json.loads(val)
+    # all we care about is the MAJOR.MINOR->EOL date mapping
+    return {
+        release['cycle']: date.fromisoformat(release['eol'])
+        for release in res
+    }
+
+
+def which_branch():
+    branch = run(
+        'git branch --show-current'.split(),
+        capture_output=True,
+        text=True
+        ).stdout.strip()
+    try:
+        return Branches[branch]
+    except KeyError:
+        pass
+    if len(sys.argv) < 2:
+        print(f'using `main` instead of unknown branch: {branch}')
+        return Branches.main
+    try:
+        return Branches[sys.argv[1]]
+    except KeyError:
+        print(f'bad branch name: {sys.argv[1]}')
+        sys.exit(1)
+
+
 def main():
     gh_response = get_tags_from_github()
     all_versions = get_version_from_tags(gh_response)
     latest_versions = get_latest_version(all_versions)
+    version_eols = get_version_eols()
+
+    branch = which_branch()
+    today = date.today()
 
     with open('versions.txt', 'w') as fd:
         for key, value in latest_versions.items():
+            # for the `active` branch, filter out any eol'd versions.
+            if branch is Branches.active and not value.is_prerelease:
+                if today > version_eols[key]:
+                    continue
             print(f'{key} Series: {value}')
             if value.is_prerelease:
                 # pre-releases are under directory which skips the pre-release
