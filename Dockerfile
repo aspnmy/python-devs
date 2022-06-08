@@ -1,6 +1,9 @@
 FROM ubuntu:20.04
 MAINTAINER Barry Warsaw <barry@python.org>
 
+ARG SERIES
+ENV SERIES=${SERIES}
+
 # Enable source repositories so we can use `apt build-dep` to get all the
 # build dependencies for Python 2.7 and 3.5+.
 RUN sed -i -- 's/#deb-src/deb-src/g' /etc/apt/sources.list && \
@@ -21,7 +24,7 @@ RUN useradd runner --create-home && \
     export LC_ALL=C.UTF-8 && export LANG=C.UTF-8
 
 # Use a new layer here so that these static changes are cached from above
-# layer.  Update Xenial and install the build-deps.
+# layer.  Update Ubuntu and install the build-deps.
 RUN apt -qq -o=Dpkg::Use-Pty=0 update && \
     apt -qq -o=Dpkg::Use-Pty=0 -y dist-upgrade && \
     # Use python3.8 build-deps for Ubuntu 20.04
