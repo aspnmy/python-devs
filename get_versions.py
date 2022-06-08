@@ -7,20 +7,20 @@ first alpha release of the in-development version.  There are no tags until
 the first alpha.
 """
 
-import sys
+import os
 import json
 import urllib.request
 
 from datetime import date
 from enum import Enum, auto
 from packaging import version as pkg_version
-from subprocess import run
+
 
 # For production.
 SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10', '3.11']
 
-# For testing.
-#SERIES = ['3.9']
+# For testing.  This should match Dockerfile app version of Python.
+#SERIES = ['3.10']
 
 
 class Auto(Enum):
@@ -28,9 +28,8 @@ class Auto(Enum):
         return name
 
 
-class Branches(Auto):
+class Series(Auto):
     latest = auto()
-    main = auto()
     active = auto()
 
 
@@ -79,24 +78,19 @@ def get_version_eols():
     }
 
 
-def which_branch():
-    branch = run(
-        'git branch --show-current'.split(),
-        capture_output=True,
-        text=True
-        ).stdout.strip()
-    try:
-        return Branches[branch]
-    except KeyError:
-        pass
-    if len(sys.argv) < 2:
-        print(f'using `main` instead of unknown branch: {branch}')
-        return Branches.main
-    try:
-        return Branches[sys.argv[1]]
-    except KeyError:
-        print(f'bad branch name: {sys.argv[1]}')
-        sys.exit(1)
+def which_series():
+    # For the latest/main series, we build every version of Python that we can
+    # build, at least as specified in the `SERIES` variable above.  For the
+    # active series, we only build that set of Pythons that have not EOL'd.
+    # The .gitlab-ci.yml file passes the commit and merge request target
+    # branches to the Dockerfile, which sets environment variables that this
+    # script can use to determine which series to build.
+    #
+    # This environment variable will be passed in from the .gitlab-ci-yml file
+    # to the Dockerfile to us.
+    series = Series[os.environ.get('SERIES')]
+    print(f'Building for series: {series}')
+    return series
 
 
 def main():
@@ -105,13 +99,13 @@ def main():
     latest_versions = get_latest_version(all_versions)
     version_eols = get_version_eols()
 
-    branch = which_branch()
     today = date.today()
+    series = which_series()
 
     with open('versions.txt', 'w') as fd:
         for key, value in latest_versions.items():
             # for the `active` branch, filter out any eol'd versions.
-            if branch is Branches.active and not value.is_prerelease:
+            if series is Series.active and not value.is_prerelease:
                 if today > version_eols[key]:
                     continue
             print(f'{key} Series: {value}')

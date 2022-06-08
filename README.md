@@ -4,6 +4,8 @@ This is an official Docker image containing various stable and in-development
 Python releases.  It is based on [Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/).
 
 There are two images to choose from, `active` and `latest` (a.k.a. `main`).
+Note that we recommend against using `main` as it may soon be
+[deprecated](https://gitlab.com/python-devs/ci-images/-/issues/20).
 Both images contain all the currently active versions of Python, including:
 
 <!---
@@ -34,7 +36,7 @@ You can use these images to test something in a supported version of Python,
 e.g. (substituting `latest` for `active` if you need EOL'd versions):
 
 ```
-$ docker run registry.gitlab.com/python-devs/ci-images:active python3.9 -c "import sys; print(sys.version)"
+$ docker run registry.gitlab.com/python-devs/ci-images:active python3.10 -c "import sys; print(sys.version)"
 ```
 
 You can pull the resulting containers with this command:
