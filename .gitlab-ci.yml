@@ -11,8 +11,8 @@ variables:
     # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
     DOCKER_HOST: tcp://docker:2376
     DOCKER_TLS_CERTDIR: "/certs"
-    CONTAINER_LATEST_TEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-latest
-    CONTAINER_ACTIVE_TEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-active
+    CONTAINER_LATEST_TEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-latest.test
+    CONTAINER_ACTIVE_TEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-active.test
     CONTAINER_MAIN_IMAGE: $CI_REGISTRY_IMAGE:main
     CONTAINER_LATEST_IMAGE: $CI_REGISTRY_IMAGE:latest
     CONTAINER_ACTIVE_IMAGE: $CI_REGISTRY_IMAGE:active
@@ -60,8 +60,10 @@ release-image:
         - docker push $CONTAINER_LATEST_IMAGE
         - docker tag $CONTAINER_LATEST_TEST $CONTAINER_MAIN_IMAGE
         - docker push $CONTAINER_MAIN_IMAGE
+        - docker rmi $CONTAINER_LATEST_TEST
         - docker pull $CONTAINER_ACTIVE_TEST
         - docker tag $CONTAINER_ACTIVE_TEST $CONTAINER_ACTIVE_IMAGE
         - docker push $CONTAINER_ACTIVE_IMAGE
+        - docker rmi $CONTAINER_ACTIVE_TEST
     only:
         - main
