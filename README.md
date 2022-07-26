@@ -13,7 +13,7 @@ It would be great if we could create this list dynamically, since it's the
 we already auto-detect the active versions from the git tags.
 --->
 
-* [Python 3.11.0b4](https://www.python.org/downloads/release/python-3110b4/)
+* [Python 3.11.0b5](https://www.python.org/downloads/release/python-3110b5/)
 * [Python 3.10.5](https://www.python.org/downloads/release/python-3105/)
 * [Python 3.9.13](https://www.python.org/downloads/release/python-3913/)
 * [Python 3.8.13](https://www.python.org/downloads/release/python-3813/)
@@ -24,6 +24,10 @@ The `latest` image also includes these EOL'd versions:
 * [Python 3.6.15](https://www.python.org/downloads/release/python-3615/)
 * [Python 3.5.10](https://www.python.org/downloads/release/python-3510/)
 * [Python 2.7.18](https://www.python.org/downloads/release/python-2718/)
+
+Both images also contain the Python built from [git main
+HEAD](https://github.com/python/cpython/tree/main), currently what will become
+Python 3.12.
 
 Feel free to help us by submitting
 [merge requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
