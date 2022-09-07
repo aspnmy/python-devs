@@ -14,10 +14,10 @@ we already auto-detect the active versions from the git tags.
 --->
 
 * [Python 3.11.0rc1](https://www.python.org/downloads/release/python-3110rc1/)
-* [Python 3.10.5](https://www.python.org/downloads/release/python-3105/)
-* [Python 3.9.13](https://www.python.org/downloads/release/python-3913/)
-* [Python 3.8.13](https://www.python.org/downloads/release/python-3813/)
-* [Python 3.7.13](https://www.python.org/downloads/release/python-3713/)
+* [Python 3.10.7](https://www.python.org/downloads/release/python-3107/)
+* [Python 3.9.14](https://www.python.org/downloads/release/python-3914/)
+* [Python 3.8.14](https://www.python.org/downloads/release/python-3814/)
+* [Python 3.7.14](https://www.python.org/downloads/release/python-3714/)
 
 The `latest` image also includes these EOL'd versions:
 
