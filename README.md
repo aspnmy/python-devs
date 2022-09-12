@@ -13,7 +13,7 @@ It would be great if we could create this list dynamically, since it's the
 we already auto-detect the active versions from the git tags.
 --->
 
-* [Python 3.11.0rc1](https://www.python.org/downloads/release/python-3110rc1/)
+* [Python 3.11.0rc2](https://www.python.org/downloads/release/python-3110rc2/)
 * [Python 3.10.7](https://www.python.org/downloads/release/python-3107/)
 * [Python 3.9.14](https://www.python.org/downloads/release/python-3914/)
 * [Python 3.8.14](https://www.python.org/downloads/release/python-3814/)
