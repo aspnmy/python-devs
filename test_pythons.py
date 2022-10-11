@@ -33,6 +33,7 @@ with open('/usr/local/bin/versions.txt', encoding='utf-8') as fp:
 FAIL = []
 PASS = []
 OUTPUTS = {}
+VERSIONS = {}
 
 
 for exe, output in testables.items():
@@ -47,14 +48,18 @@ for exe, output in testables.items():
         OUTPUTS[exe] = version
     else:
         PASS.append(exe)
+        VERSIONS[exe] = version
 
 
 print(f'PASS: {PASS}')
 print(f'FAIL: {FAIL}')
 
+print('Python versions built:')
+for b_exe, b_version in VERSIONS.items():
+    print(f'    {b_exe:10} == {b_version}')
+
 if len(FAIL) > 0:
     pprint.pprint(testables)
     pprint.pprint(OUTPUTS)
-
 
 sys.exit(len(FAIL))
