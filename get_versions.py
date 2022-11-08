@@ -8,6 +8,7 @@ the first alpha.
 """
 
 import os
+import sys
 import json
 import urllib.request
 
@@ -17,7 +18,7 @@ from packaging import version as pkg_version
 
 
 # For production.
-SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10', '3.11']
+SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10', '3.11', '3.12']
 
 # For testing.  This should match Dockerfile app version of Python.
 #SERIES = ['3.10']
@@ -88,7 +89,12 @@ def which_series():
     #
     # This environment variable will be passed in from the .gitlab-ci-yml file
     # to the Dockerfile to us.
-    series = Series[os.environ.get('SERIES')]
+    requested = os.environ.get('SERIES')
+    try:
+        series = Series[requested]
+    except KeyError:
+        print(f'Run with SERIES={"|".join(Series.__members__)}')
+        sys.exit(1)
     print(f'Building for series: {series}')
     return series
 
@@ -106,7 +112,9 @@ def main():
         for key, value in latest_versions.items():
             # for the `active` branch, filter out any eol'd versions.
             if series is Series.active and not value.is_prerelease:
-                if today > version_eols[key]:
+                if (eol := version_eols.get(key)) is None:
+                    print(f'No EOL data for {key}... assume active')
+                elif today > eol:
                     continue
             print(f'{key} Series: {value}')
             if value.is_prerelease:
