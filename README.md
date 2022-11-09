@@ -1,7 +1,7 @@
 # CI Images for Python
 
 This is an official Docker image containing various stable and in-development
-Python releases.  It is based on [Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/).
+Python releases.  It is based on [Ubuntu 22.04 LTS](http://releases.ubuntu.com/22.04/).
 
 The `active` (a.k.a. `main`) image contains all of the currently maintained
 versions of Python. None of the [EOL'd](https://endoflife.date/python)
