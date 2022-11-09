@@ -11,36 +11,18 @@ variables:
     # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
     DOCKER_HOST: tcp://docker:2376
     DOCKER_TLS_CERTDIR: "/certs"
-    CONTAINER_LATEST_TEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-latest.test
     CONTAINER_ACTIVE_TEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-active.test
     CONTAINER_MAIN_IMAGE: $CI_REGISTRY_IMAGE:main
-    CONTAINER_LATEST_IMAGE: $CI_REGISTRY_IMAGE:latest
     CONTAINER_ACTIVE_IMAGE: $CI_REGISTRY_IMAGE:active
 
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-
-build-latest:
-    stage: build
-    script:
-        - docker build . --pull -t ${CONTAINER_LATEST_TEST}  --build-arg SERIES="latest"
-        - docker push ${CONTAINER_LATEST_TEST}
 
 build-active:
     stage: build
     script:
         - docker build . --pull -t ${CONTAINER_ACTIVE_TEST} --build-arg SERIES="active"
         - docker push ${CONTAINER_ACTIVE_TEST}
-
-test-latest:
-    stage: test
-    needs: ["build-latest"]
-    script:
-        - docker pull $CONTAINER_LATEST_TEST
-        - docker run $CONTAINER_LATEST_TEST /usr/local/bin/test_pythons.py
-        - docker run $CONTAINER_LATEST_TEST tox --version
-        - docker run $CONTAINER_LATEST_TEST mypy --version
-        - docker run $CONTAINER_LATEST_TEST pipx --version
 
 test-active:
     stage: test
@@ -55,10 +37,6 @@ test-active:
 release-image:
     stage: release
     script:
-        - docker pull $CONTAINER_LATEST_TEST
-        - docker tag $CONTAINER_LATEST_TEST $CONTAINER_LATEST_IMAGE
-        - docker push $CONTAINER_LATEST_IMAGE
-        - docker tag $CONTAINER_LATEST_TEST $CONTAINER_MAIN_IMAGE
         - docker push $CONTAINER_MAIN_IMAGE
         - docker pull $CONTAINER_ACTIVE_TEST
         - docker tag $CONTAINER_ACTIVE_TEST $CONTAINER_ACTIVE_IMAGE
