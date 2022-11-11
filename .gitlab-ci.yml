@@ -37,9 +37,10 @@ test-active:
 release-image:
     stage: release
     script:
-        - docker push $CONTAINER_MAIN_IMAGE
         - docker pull $CONTAINER_ACTIVE_TEST
         - docker tag $CONTAINER_ACTIVE_TEST $CONTAINER_ACTIVE_IMAGE
         - docker push $CONTAINER_ACTIVE_IMAGE
+        - docker tag $CONTAINER_ACTIVE_TEST $CONTAINER_MAIN_IMAGE
+        - docker push $CONTAINER_MAIN_IMAGE
     only:
         - main
