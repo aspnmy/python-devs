@@ -4,8 +4,8 @@ MAINTAINER Barry Warsaw <barry@python.org>
 ARG SERIES
 ENV SERIES=${SERIES}
 
-# Enable source repositories so we can use `apt build-dep` to get all the
-# build dependencies for Python 2.7 and 3.5+.
+# Enable source repositories so we can use `apt build-dep` to get all required
+# build dependencies.
 RUN sed -i -- 's/#deb-src/deb-src/g' /etc/apt/sources.list && \
     sed -i -- 's/# deb-src/deb-src/g' /etc/apt/sources.list
 

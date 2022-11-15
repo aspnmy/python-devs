@@ -14,7 +14,7 @@ with open('/usr/local/bin/versions.txt', encoding='utf-8') as fp:
     # to handle pre-release versions.  E.g.
     #
     # 3.9.6
-    # 3.10.0rc1 3.10.0
+    # 3.12.0rc1 3.12.0
     #
     # What we want is the major.minor version so we can invoke the
     # interpreter, and the value that will be returned by `pythonX.Y -V`.
