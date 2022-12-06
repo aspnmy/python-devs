@@ -15,12 +15,12 @@ It would be great if we could create this list dynamically, since it's the
 we already auto-detect the active versions from the git tags.
 --->
 
-* [Python 3.12.0a2](https://www.python.org/downloads/release/python-3120a2/)
-* [Python 3.11.0](https://www.python.org/downloads/release/python-3110/)
-* [Python 3.10.8](https://www.python.org/downloads/release/python-3108/)
-* [Python 3.9.15](https://www.python.org/downloads/release/python-3915/)
-* [Python 3.8.15](https://www.python.org/downloads/release/python-3815/)
-* [Python 3.7.15](https://www.python.org/downloads/release/python-3715/)
+* [Python 3.12.0a3](https://www.python.org/downloads/release/python-3120a3/)
+* [Python 3.11.1](https://www.python.org/downloads/release/python-3111/)
+* [Python 3.10.9](https://www.python.org/downloads/release/python-3109/)
+* [Python 3.9.16](https://www.python.org/downloads/release/python-3916/)
+* [Python 3.8.16](https://www.python.org/downloads/release/python-3816/)
+* [Python 3.7.16](https://www.python.org/downloads/release/python-3716/)
 
 Feel free to help us by submitting
 [merge requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
