@@ -57,6 +57,6 @@ test-readme:
     script:
         - apk add git
         - pip install packaging
-        - ./get_versions.py
+        - SERIES=active ./get_versions.py
         - ./sync_readme.py
         - git diff --exit-code
