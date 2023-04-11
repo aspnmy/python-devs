@@ -6,6 +6,8 @@ Updates Python versions listed in README from 'versions.txt' (output
 from `get_versions.py`.
 """
 
+import os
+
 from packaging import version as pkg_version
 
 with open('versions.txt', 'r') as fp:
@@ -28,21 +30,20 @@ versions_lines.append('')
 versions_lines.append('')
 versions_text = '\n'.join(versions_lines)
 
-with open('README.md', 'r') as fp:
-    readme_text = fp.read()
+with open('README.md', 'r') as fp, open('README.md.swap', 'w') as fpo:
+    for line in fp:
+        fpo.write(line)
+        if line == '<!-- BEGIN VERSIONS -->\n':
+            break
 
-versions_start_marker = '<!-- BEGIN VERSIONS -->\n'
-versions_start_index = readme_text.index(versions_start_marker)
-versions_start_index += len(versions_start_marker)
+    fpo.write(versions_text)
 
-versions_end_marker = '<!-- END VERSIONS -->\n'
-versions_end_index = readme_text.index(versions_end_marker)
+    for line in fp:
+        if line == '<!-- END VERSIONS -->\n':
+            fpo.write(line)
+            break
 
-readme_text = (
-    readme_text[:versions_start_index]
-    + versions_text
-    + readme_text[versions_end_index:]
-)
+    for line in fp:
+        fpo.write(line)
 
-with open('README.md', 'w') as fp:
-    fp.write(readme_text)
+os.rename('README.md.swap', 'README.md')
