@@ -20,7 +20,6 @@ we already auto-detect the active versions from the git tags.
 * [Python 3.10.13](https://www.python.org/downloads/release/python-31013/)
 * [Python 3.9.18](https://www.python.org/downloads/release/python-3918/)
 * [Python 3.8.18](https://www.python.org/downloads/release/python-3818/)
-* [Python 3.7.17](https://www.python.org/downloads/release/python-3717/)
 
 Feel free to help us by submitting
 [merge requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
