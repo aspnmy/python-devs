@@ -18,7 +18,7 @@ from packaging import version as pkg_version
 
 
 # For production.
-SERIES = ['2.7', '3.5', '3.6', '3.7', '3.8', '3.9', '3.10', '3.11', '3.12']
+SERIES = ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
 
 # For testing.  This should match Dockerfile app version of Python.
 #SERIES = ['3.10']
