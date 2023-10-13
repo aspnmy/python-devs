@@ -13,8 +13,8 @@ with open('/usr/local/bin/versions.txt', encoding='utf-8') as fp:
     # exact version and the second word is the series.  This latter is mostly
     # to handle pre-release versions.  E.g.
     #
-    # 3.9.6
-    # 3.12.0rc1 3.12.0
+    # 3.X.Y
+    # 3.X.YbZ 3.X.Y
     #
     # What we want is the major.minor version so we can invoke the
     # interpreter, and the value that will be returned by `pythonX.Y -V`.
@@ -38,8 +38,7 @@ VERSIONS = {}
 
 for exe, output in testables.items():
     proc = subprocess.run([exe, '-V'], capture_output=True, text=True)
-    # Python 2.7 prints its version string to stderr, Python 3 to stdout.
-    version = proc.stdout.strip() + proc.stderr.strip()
+    version = proc.stdout.strip()
     if proc.returncode != 0:
         FAIL.append(exe)
         OUTPUTS[exe] = version

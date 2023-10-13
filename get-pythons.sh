@@ -30,11 +30,13 @@ done <versions.txt
 # Get and install Python rolling devel from the latest git install.
 #
 # 2022-11-07(warsaw): This isn't very reliable.  During the alpha release
-# cycle, both the `main` branch and the tarball install `python3.N`
+# cycle, both the `main` branch and the downloaded tarball install `python3.N`
 # executables, but with incompatible -V output.  And the tarball actually
-# overrides the release branch.  It's not likely worth it.
+# overrides the release branch.  Since very few people actually test against
+# alpha releases, it's not likely worth it.
 #
 # https://gitlab.com/python-devs/ci-images/-/issues/24
+#
 # cd  /tmp/
 # wget -q https://github.com/python/cpython/archive/main.zip
 # unzip -qq main.zip
