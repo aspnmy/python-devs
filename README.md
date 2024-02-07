@@ -16,8 +16,8 @@ we already auto-detect the active versions from the git tags.
 --->
 
 * [Python 3.13.0a3](https://www.python.org/downloads/release/python-3130a3/)
-* [Python 3.12.1](https://www.python.org/downloads/release/python-3121/)
-* [Python 3.11.7](https://www.python.org/downloads/release/python-3117/)
+* [Python 3.12.2](https://www.python.org/downloads/release/python-3122/)
+* [Python 3.11.8](https://www.python.org/downloads/release/python-3118/)
 * [Python 3.10.13](https://www.python.org/downloads/release/python-31013/)
 * [Python 3.9.18](https://www.python.org/downloads/release/python-3918/)
 * [Python 3.8.18](https://www.python.org/downloads/release/python-3818/)
