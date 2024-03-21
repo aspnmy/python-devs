@@ -18,9 +18,9 @@ we already auto-detect the active versions from the git tags.
 * [Python 3.13.0a5](https://www.python.org/downloads/release/python-3130a5/)
 * [Python 3.12.2](https://www.python.org/downloads/release/python-3122/)
 * [Python 3.11.8](https://www.python.org/downloads/release/python-3118/)
-* [Python 3.10.13](https://www.python.org/downloads/release/python-31013/)
-* [Python 3.9.18](https://www.python.org/downloads/release/python-3918/)
-* [Python 3.8.18](https://www.python.org/downloads/release/python-3818/)
+* [Python 3.10.14](https://www.python.org/downloads/release/python-31014/)
+* [Python 3.9.19](https://www.python.org/downloads/release/python-3919/)
+* [Python 3.8.19](https://www.python.org/downloads/release/python-3819/)
 
 Feel free to help us by submitting
 [merge requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
