@@ -10,10 +10,7 @@ recommend against using `main` as it may soon be
 [deprecated](https://gitlab.com/python-devs/ci-images/-/issues/20).  These are
 the current versions that are available:
 
-<!---
-It would be great if we could create this list dynamically, since it's the
-we already auto-detect the active versions from the git tags.
---->
+<!-- BEGIN VERSIONS -->
 
 * [Python 3.13.0b4](https://www.python.org/downloads/release/python-3130b4/)
 * [Python 3.12.4](https://www.python.org/downloads/release/python-3124/)
@@ -21,6 +18,8 @@ we already auto-detect the active versions from the git tags.
 * [Python 3.10.14](https://www.python.org/downloads/release/python-31014/)
 * [Python 3.9.19](https://www.python.org/downloads/release/python-3919/)
 * [Python 3.8.19](https://www.python.org/downloads/release/python-3819/)
+
+<!-- END VERSIONS -->
 
 Feel free to help us by submitting
 [merge requests](https://gitlab.com/python-devs/ci-images/merge_requests) or
