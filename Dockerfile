@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 MAINTAINER Barry Warsaw <barry@python.org>
 
 ARG SERIES
@@ -27,15 +27,15 @@ RUN useradd runner --create-home && \
 # layer.  Update Ubuntu and install the build-deps.
 RUN apt -qq -o=Dpkg::Use-Pty=0 update && \
     apt -qq -o=Dpkg::Use-Pty=0 -y dist-upgrade && \
-    # Use python3.10 build-deps for Ubuntu 22.04
-    apt -qq -o=Dpkg::Use-Pty=0 build-dep -y python3.10 && \
+    # Use python3.12 build-deps for Ubuntu 22.04
+    apt -qq -o=Dpkg::Use-Pty=0 build-dep -y python3.12 && \
     apt -qq -o=Dpkg::Use-Pty=0 install -y python3-pip python3-venv && \
-    apt -qq -o=Dpkg::Use-Pty=0 install -y wget unzip git && \
+    apt -qq -o=Dpkg::Use-Pty=0 install -y wget unzip git jq && \
     # Remove apt's lists to make the image smaller.
     rm -rf /var/lib/apt/lists/*
 # Get and install all versions of Python.
 RUN ./usr/local/bin/get_versions.py && ./usr/local/bin/get-pythons.sh > /dev/null
-RUN python3.10 -m pip install mypy codecov tox pipx
+RUN python3.12 -m pip install mypy codecov tox pipx
 RUN mv versions.txt /usr/local/bin/versions.txt
 
 # Switch to runner user and set the workdir.
