@@ -1,5 +1,5 @@
 FROM ubuntu:24.04
-MAINTAINER Barry Warsaw <barry@python.org>
+LABEL python.ci-image.authors="Barry Warsaw <barry@python.org>"
 
 ARG SERIES
 ENV SERIES=${SERIES}
