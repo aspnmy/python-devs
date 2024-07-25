@@ -109,7 +109,8 @@ def main():
     series = which_series()
 
     with open('versions.txt', 'w') as fd:
-        for key, value in latest_versions.items():
+        # Build latest to oldest, primarily for better testing of the new free-threading builds.
+        for key, value in reversed(latest_versions.items()):
             # for the `active` branch, filter out any eol'd versions.
             if series is Series.active and not value.is_prerelease:
                 if (eol := version_eols.get(key)) is None:
