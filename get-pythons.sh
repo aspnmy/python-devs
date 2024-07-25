@@ -28,8 +28,8 @@ get_install () {
     # because we want the non-t version (i.e. the default build) to be available on /usr/local/bin/pythonX.Y
     # which the latter build will overwrite.
     if [ "$MAJOR" -gt 3 ] || { [ "$MAJOR" -eq 3 ] && [ "$MINOR" -ge 13 ]; }; then
-        make distclean
         ./configure -C --disable-gil && make -j4 && make -j4 altinstall
+        make distclean
     fi
     # Build the default build for all active versions.
     ./configure -C && make -j4 && make -j4 altinstall
