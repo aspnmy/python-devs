@@ -29,7 +29,7 @@ RUN apt -qq -o=Dpkg::Use-Pty=0 update && \
     # Use python3.12 build-deps for Ubuntu 22.04
     apt -qq -o=Dpkg::Use-Pty=0 build-dep -y python3.12 && \
     apt -qq -o=Dpkg::Use-Pty=0 install -y python3-pip python3-venv && \
-    apt -qq -o=Dpkg::Use-Pty=0 install -y wget unzip git jq && \
+    apt -qq -o=Dpkg::Use-Pty=0 install -y wget unzip git jq curl && \
     # Remove apt's lists to make the image smaller.
     rm -rf /var/lib/apt/lists/*
 # Get and install all versions of Python.
