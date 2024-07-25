@@ -23,11 +23,16 @@ get_install () {
     wget -q https://www.python.org/ftp/python/$PY_DIR/Python-$PY_VERSION.tar.xz
     tar Jxf Python-$PY_VERSION.tar.xz
     cd /tmp/Python-$PY_VERSION
-    ./configure -C && make -j4 && make -j4 altinstall
-    # For Python's >= 3.13, also build the free-threading version.
+    # For Python's >= 3.13, also build the free-threading version.  This will install /usr/local/bin/pythonX.Y
+    # *and* /usr/local/bin/pythonX.Yt where the 't' version is free-threaded.  We have to do this first
+    # because we want the non-t version (i.e. the default build) to be available on /usr/local/bin/pythonX.Y
+    # which the latter build will overwrite.
     if [ "$MAJOR" -gt 3 ] || { [ "$MAJOR" -eq 3 ] && [ "$MINOR" -ge 13 ]; }; then
+        make distclean
         ./configure -C --disable-gil && make -j4 && make -j4 altinstall
     fi
+    # Build the default build for all active versions.
+    ./configure -C && make -j4 && make -j4 altinstall
     cd /tmp
     rm Python-$PY_VERSION.tar.xz && rm -r Python-$PY_VERSION
 }
