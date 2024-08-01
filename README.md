@@ -16,7 +16,7 @@ versions from the git tags.  For now, when new versions come out, I just edit th
 GitLab web UI.
 --->
 
-* [Python 3.13.0b4](https://www.python.org/downloads/release/python-3130b4/)
+* [Python 3.13.0rc1](https://www.python.org/downloads/release/python-3130rc1/)
 * [Python 3.12.4](https://www.python.org/downloads/release/python-3124/)
 * [Python 3.11.9](https://www.python.org/downloads/release/python-3119/)
 * [Python 3.10.14](https://www.python.org/downloads/release/python-31014/)
