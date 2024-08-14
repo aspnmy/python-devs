@@ -17,7 +17,7 @@ GitLab web UI.
 --->
 
 * [Python 3.13.0rc1](https://www.python.org/downloads/release/python-3130rc1/)
-* [Python 3.12.4](https://www.python.org/downloads/release/python-3124/)
+* [Python 3.12.5](https://www.python.org/downloads/release/python-3125/)
 * [Python 3.11.9](https://www.python.org/downloads/release/python-3119/)
 * [Python 3.10.14](https://www.python.org/downloads/release/python-31014/)
 * [Python 3.9.19](https://www.python.org/downloads/release/python-3919/)
