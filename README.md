@@ -16,12 +16,12 @@ versions from the git tags.  For now, when new versions come out, I just edit th
 GitLab web UI.
 --->
 
-* [Python 3.13.0rc3](https://www.python.org/downloads/release/python-3130rc3/)
+* [Python 3.14.0a0 - unreleased](https://github.com/python/cpython)
+* [Python 3.13.0](https://www.python.org/downloads/release/python-3130/)
 * [Python 3.12.7](https://www.python.org/downloads/release/python-3127/)
 * [Python 3.11.10](https://www.python.org/downloads/release/python-31110/)
 * [Python 3.10.15](https://www.python.org/downloads/release/python-31015/)
 * [Python 3.9.20](https://www.python.org/downloads/release/python-3920/)
-* [Python 3.8.20](https://www.python.org/downloads/release/python-3820/)
 
 # Python executables
 
@@ -32,9 +32,9 @@ parallel in `/usr/local/bin` (generally on `$PATH`).  For example:
 $ python3.12 -V
 ```
 
-As of Python 3.13 (including the pre-release versions), both the standard build and the [free-threading
-(a.k.a. "No GIL")](https://py-free-threading.github.io/) binaries are available.  The free-threading binary
-has a `t` at the end, e.g.
+As of Python 3.13, both the standard build and the [free-threading (a.k.a. "No
+GIL")](https://py-free-threading.github.io/) binaries are available.  The
+free-threading binary has a `t` at the end, e.g.
 
 ```
 $ python3.13t -V
