@@ -21,7 +21,7 @@ before_script:
 build-active:
     stage: build
     script:
-        - docker build . --pull -t ${CONTAINER_ACTIVE_TEST} --build-arg SERIES="active"
+        - docker build . --pull -t ${CONTAINER_ACTIVE_TEST}
         - docker push ${CONTAINER_ACTIVE_TEST}
 
 test-active:
