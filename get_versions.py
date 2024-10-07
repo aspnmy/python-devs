@@ -7,18 +7,19 @@ first alpha release of the in-development version.  There are no tags until
 the first alpha.
 """
 
-import os
-import sys
 import json
 import urllib.request
 
 from datetime import date
-from enum import Enum, auto
+from enum import Enum
 from packaging import version as pkg_version
 
 
 # For production.
-SERIES = ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
+SERIES = ['3.9', '3.10', '3.11', '3.12', '3.13']
+
+# Versions for which there hasn't been even an alpha release.
+PRE_RELEASE = '3.14.0a0'
 
 # For testing.  This should match Dockerfile app version of Python.
 #SERIES = ['3.10']
@@ -27,11 +28,6 @@ SERIES = ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
 class Auto(Enum):
     def _generate_next_value_(name, start, count, last_values):
         return name
-
-
-class Series(Auto):
-    latest = auto()
-    active = auto()
 
 
 def get_tags_from_github():
@@ -54,7 +50,7 @@ def get_version_from_tags(tags):
 
 
 def get_latest_version(all_versions):
-    # mapping from series to latest.
+    # Mapping from series to latest.
     latest = {}
     for version in all_versions:
         series = f'{version.major}.{version.minor}'
@@ -79,40 +75,22 @@ def get_version_eols():
     }
 
 
-def which_series():
-    # For the latest/main series, we build every version of Python that we can
-    # build, at least as specified in the `SERIES` variable above.  For the
-    # active series, we only build that set of Pythons that have not EOL'd.
-    # The .gitlab-ci.yml file passes the commit and merge request target
-    # branches to the Dockerfile, which sets environment variables that this
-    # script can use to determine which series to build.
-    #
-    # This environment variable will be passed in from the .gitlab-ci-yml file
-    # to the Dockerfile to us.
-    requested = os.environ.get('SERIES')
-    try:
-        series = Series[requested]
-    except KeyError:
-        print(f'Run with SERIES={"|".join(Series.__members__)}')
-        sys.exit(1)
-    print(f'Building for series: {series}')
-    return series
-
-
 def main():
     gh_response = get_tags_from_github()
     all_versions = get_version_from_tags(gh_response)
     latest_versions = get_latest_version(all_versions)
+    if PRE_RELEASE:
+        version = pkg_version.parse(PRE_RELEASE)
+        latest_versions[f'{version.major}.{version.minor}'] = version
+
     version_eols = get_version_eols()
 
     today = date.today()
-    series = which_series()
 
     with open('versions.txt', 'w') as fd:
         # Build latest to oldest, primarily for better testing of the new free-threading builds.
         for key, value in reversed(latest_versions.items()):
-            # for the `active` branch, filter out any eol'd versions.
-            if series is Series.active and not value.is_prerelease:
+            if not value.is_prerelease:
                 if (eol := version_eols.get(key)) is None:
                     print(f'No EOL data for {key}... assume active')
                 elif today > eol:
