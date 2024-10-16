@@ -16,10 +16,11 @@ from packaging import version as pkg_version
 
 
 # For production.
-SERIES = ['3.9', '3.10', '3.11', '3.12', '3.13']
+SERIES = ['3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
 
 # Versions for which there hasn't been even an alpha release.
-PRE_RELEASE = '3.14.0a0'
+#PRE_RELEASE = '3.14.0a0'
+PRE_RELEASE = None
 
 # For testing.  This should match Dockerfile app version of Python.
 #SERIES = ['3.10']
