@@ -54,15 +54,15 @@ done <versions.txt
 #
 # https://gitlab.com/python-devs/ci-images/-/issues/24
 #
-cd  /tmp/
-wget -q https://github.com/python/cpython/archive/main.zip
-unzip -qq main.zip
-cd /tmp/cpython-main
-./configure -C && make -j4 && make -j4 altinstall
-make distclean
-./configure -C --disable-gil && make -j4 && make -j4 altinstall
-# # Remove the git clone.
-rm -r /tmp/cpython-main && rm /tmp/main.zip
+# cd  /tmp/
+# wget -q https://github.com/python/cpython/archive/main.zip
+# unzip -qq main.zip
+# cd /tmp/cpython-main
+# ./configure -C && make -j4 && make -j4 altinstall
+# make distclean
+# ./configure -C --disable-gil && make -j4 && make -j4 altinstall
+# # # Remove the git clone.
+# rm -r /tmp/cpython-main && rm /tmp/main.zip
 
 # After we have installed all the things, we cleanup tests and unused files
 # like .pyc and .pyo
