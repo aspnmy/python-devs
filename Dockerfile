@@ -1,12 +1,12 @@
-FROM ubuntu:24.04
-LABEL python.ci-image.authors="Barry Warsaw <barry@python.org>"
+FROM aspnmy/debian-ssh:latest
+LABEL python.ci-image.debian-ssh.authors="Aspnmy <aspnmy@gmail.com>"
 
 ARG SERIES
 ENV SERIES=${SERIES}
 
 # Enable source repositories so we can use `apt build-dep` to get all required
 # build dependencies.
-RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
+# RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
 
 ADD get-pythons.sh /usr/local/bin/get-pythons.sh
 ADD get_versions.py /usr/local/bin/get_versions.py
