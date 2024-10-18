@@ -8,6 +8,7 @@ ENV SERIES=${SERIES}
 # build dependencies.
 # RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
 
+ADD sources.list /etc/apt//etc/apt/sources.list.d/sources.list
 ADD get-pythons.sh /usr/local/bin/get-pythons.sh
 ADD get_versions.py /usr/local/bin/get_versions.py
 ADD test_pythons.py /usr/local/bin/test_pythons.py
